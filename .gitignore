@@ -1,3 +1,6 @@
+# this git specific so your placeholders stay your placeholders
+placeholders/placeholders.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
