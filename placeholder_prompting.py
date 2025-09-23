@@ -30,7 +30,7 @@ class PlaceholderWithUI:
         # parses the prompt and replaces placeholders with the given prompt
 
         # load the placeholders from placeholders.json
-        with open('custom_nodes/placeholder/placeholders/placeholders.json') as data:
+        with open('custom_nodes/comfyui_placeholder_prompting/placeholders/placeholders.json') as data:
             self.data = json.load(data)
 
         def repl(match):
