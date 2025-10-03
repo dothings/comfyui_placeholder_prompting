@@ -17,6 +17,27 @@ which will transform into:
 
 in every instance you like, be it garden, living room or town square!
 
+# new in v1.1 - comments/temporarily marking parts of a prompt
+You can use ```## .....some text..... ##``` to temporarily exclude a part of your prompt.
+
+### Example
+Prompt:
+```image of a comfortable couch placed in a livingroom```
+
+If you want to test the same prompt in a garden setting instead, just do:
+
+```image of a comfortable couch placed in a ##livingroom## garden```
+
+The system will then treat the prompt as:
+```image of a comfortable couch placed in a garden```\
+This way, you keep the original text in your prompt node without deleting it, making it easy to revert back later.
+
+Notes:\
+Works with single words, multiple words, and across line breaks.\
+You can use it multiple times in one prompt.\
+Just make sure you always add and remove ## in pairs.
+
+
 # installation
 Clone this repo into your ```custom_nodes``` folder.
 rename the placeholders/placeholders_example.json file to placeholder/placeholders.json

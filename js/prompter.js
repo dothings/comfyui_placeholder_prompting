@@ -9,7 +9,7 @@ app.registerExtension({
                 this.addInput("input_string", "STRING");
                 this.showValueWidget = ComfyWidgets["STRING"](this, "preview", ["STRING", { multiline: true }], app).widget;
                 this.showValueWidget.inputEl.readOnly = true;
-                this.showValueWidget.inputEl.style.opacity = 0.6;
+                this.showValueWidget.inputEl.style.opacity = 0.7;
             };
 
             const onExecuted = nodeType.prototype.onExecuted;

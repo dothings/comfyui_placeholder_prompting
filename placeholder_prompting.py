@@ -23,22 +23,28 @@ class PlaceholderWithUI:
         pass
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {"raw_text": (IO.STRING, {"multiline": True, "dynamicPrompts": True, "tooltip": "The text to be encoded."}), }}
 
     def replace_placeholders(self, raw_text):
         # parses the prompt and replaces placeholders with the given prompt
+        # allows ## .... ## for comments/greyed out text
+        # allows ** .... ** for text placeholders
 
         # load the placeholders from placeholders.json
         with open('custom_nodes/comfyui_placeholder_prompting/placeholders/placeholders.json') as data:
             self.data = json.load(data)
 
-        def repl(match):
-            # replace any **placeholder** with its description
+        def replace_placeholder(match):
+            # replaces **placeholders** with value found in placeholder.json
             key = match.group(1).strip()
             return self.data.get(key, match.group(0))  # fallback to original
 
-        parsed_text = re.sub(r"\*\*(.*?)\*\*", repl, raw_text)
+        # remove greyed out text
+        parsed_text = re.sub(r"##.*?##", "", raw_text, flags=re.DOTALL)
+        
+        # replace **placeholders**
+        parsed_text = re.sub(r"\*\*(.*?)\*\*", replace_placeholder, parsed_text)
 
         return {"ui": {"text": (parsed_text,)}, "result": (parsed_text,)}
 
